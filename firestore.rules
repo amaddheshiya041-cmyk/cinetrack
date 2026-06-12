@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection rules
+    match /users/{usernameLower} {
+      allow read: if true; // to verify security answers before login
+      allow create: if true; // to register a user
+      allow update, delete: if true; // to modify/delete user
+    }
+    
+    // Watched movies collection rules
+    match /watched_movies/{movieId} {
+      allow read, write: if true;
+    }
+
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

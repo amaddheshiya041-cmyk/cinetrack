@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "WatchedMovie": {
+      "title": "WatchedMovie",
+      "description": "A movie or media item added to the watched list through TMDB",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "posterUrl": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "required": ["title", "posterUrl", "year", "rating", "language"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User account security question and answer information",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "securityAnswer": {
+          "type": "string"
+        }
+      },
+      "required": ["username", "email", "uid", "securityAnswer"]
+    }
+  },
+  "firestore": {
+    "/watched_movies/{movieId}": {
+      "schema": "WatchedMovie",
+      "description": "Collection of watched movies loaded and saved via TMDB API"
+    },
+    "/users/{usernameLower}": {
+      "schema": "User",
+      "description": "User registrations and security question answers mapped by lowercase username"
+    }
+  }
+}
